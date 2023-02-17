@@ -79,6 +79,16 @@ if (!function_exists('verify_alipay_sign')) {
         $public = get_alipay_config($params)['alipay_public_cert_path'] ?? null;
 
         if (empty($public)) {
+            $public = get_alipay_config($params)['alipay_public_cert_sn'] ?? null;
+
+            if (!empty($public)) {
+                $public = "-----BEGIN RSA PRIVATE KEY-----\n".
+                        wordwrap($public, 64, "\n", true).
+                        "\n-----END RSA PRIVATE KEY-----";
+            }
+        }
+
+        if (empty($public)) {
             throw new InvalidConfigException(Exception::ALIPAY_CONFIG_ERROR, 'Missing Alipay Config -- [alipay_public_cert_path]');
         }
 
