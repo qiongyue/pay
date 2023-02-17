@@ -16,6 +16,7 @@ use function Yansongda\Pay\get_tenant;
 use Yansongda\Pay\Logger;
 use Yansongda\Pay\Pay;
 use Yansongda\Pay\Rocket;
+use Yansongda\Supports\Str;
 
 class PreparePlugin implements PluginInterface
 {
@@ -102,6 +103,10 @@ class PreparePlugin implements PluginInterface
         }
 
         $path = $config['app_public_cert_path'] ?? null;
+
+        if (empty($path) || !Str::endsWith($path, ['.cer', '.crt', '.pem'])) {
+            return '';
+        }
 
         if (is_null($path)) {
             throw new InvalidConfigException(Exception::ALIPAY_CONFIG_ERROR, 'Missing Alipay Config -- [app_public_cert_path]');
