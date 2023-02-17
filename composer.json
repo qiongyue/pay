@@ -5,8 +5,8 @@
     "type": "library",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/yansongda/pay/issues",
-        "source": "https://github.com/yansongda/pay",
+        "issues": "https://github.com/qiongyue/pay/issues",
+        "source": "https://github.com/qiongyue/pay",
         "homepage": "https://pay.yansongda.cn"
     },
     "authors": [
