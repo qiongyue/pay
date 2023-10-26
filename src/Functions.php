@@ -82,9 +82,9 @@ if (!function_exists('verify_alipay_sign')) {
             $public = get_alipay_config($params)['alipay_public_cert_sn'] ?? null;
 
             if (!empty($public)) {
-                $public = "-----BEGIN RSA PRIVATE KEY-----\n".
+                $public = "-----BEGIN PUBLIC KEY-----\n".
                         wordwrap($public, 64, "\n", true).
-                        "\n-----END RSA PRIVATE KEY-----";
+                        "\n-----END PUBLIC KEY-----";
             }
         }
 
