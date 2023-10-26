@@ -43,7 +43,14 @@ if (!function_exists('get_alipay_config')) {
     {
         $alipay = Pay::get(ConfigInterface::class)->get('alipay');
 
-        return $alipay[get_tenant($params)] ?? [];
+        $config = $alipay[get_tenant($params)] ?? [];
+
+        // 兼容下console下配置获取问题
+        if (!isset($config['app_id']) || empty($config['app_id'])) {
+            $config = config('pay.alipay')[get_tenant($params)] ?? [];
+        }
+
+        return $config;
     }
 }
 
